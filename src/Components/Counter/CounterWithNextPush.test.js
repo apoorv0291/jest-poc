@@ -16,7 +16,8 @@ jest.mock('next/router', () => {
 });
 
 describe('Test Counter For next push ', () => {
-    test('Our own Mock Wrapper was mocked properly and it rendered', () => {
+    test('Our own Mock Wrapper was mocked properly and it rendered', async () => {
+        const user = userEvent.setup();
         const handleIncrement = jest.fn(() => {
             return 'Kushargra';
         });
@@ -30,8 +31,9 @@ describe('Test Counter For next push ', () => {
         const pushBtn = screen.getByRole('button', {
             name: /push/i,
         });
-
+        console.log('bhaaa');
+        // console.log('bhaaa::', pushBtn);
         expect(pushBtn).toBeInTheDocument();
-        userEvent.click(pushBtn);
+        await userEvent.click(pushBtn);
     });
 });
